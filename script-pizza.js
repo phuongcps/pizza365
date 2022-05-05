@@ -5,11 +5,14 @@ function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
   
   $.ajax({
-    url : "https://api.allorigins.win/get?url=http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/"+paramID,
+    url : `http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
     type : "GET",
     dataType : "json",
     async: false,
-    success : pValue => {vDiscountValue = JSON.parse(pValue.contents).phanTramGiamGia;alert(vDiscountValue)},
+    success : pValue => {
+      vDiscountValue = pValue.phanTramGiamGia;
+      alert(vDiscountValue)
+    },
     error : () => vDiscountValue = 0
     });
 
@@ -20,11 +23,14 @@ function callAjaxApiVoucher (paramID) {
 function loadDataDrink () {
   "use strict";
   $.ajax({
-    url : "https://api.allorigins.win/get?url=http://42.115.221.44:8080/devcamp-pizza365/drinks",
+    url : "http://42.115.221.44:8080/devcamp-pizza365/drinks",
     type : "GET",
     dataType : "json",
     async : false,
-    success : pValue => addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",JSON.parse(pValue.contents)),
+    success : pValue => {
+      addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",pValue)
+      console.log(pValue)
+    },
     error : pErr => console.log(pErr)
   })
 
