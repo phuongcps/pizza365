@@ -5,11 +5,11 @@ function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
   
   $.ajax({
-    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/"+paramID,
+    url : "https://api.allorigins.win/get?url=http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/"+paramID,
     type : "GET",
     dataType : "json",
     async: false,
-    success : pValue => vDiscountValue = pValue.phanTramGiamGia,
+    success : pValue => vDiscountValue = JSON.parse(pValue.contents).phanTramGiamGia,
     error : () => vDiscountValue = 0
     });
 
@@ -20,11 +20,11 @@ function callAjaxApiVoucher (paramID) {
 function loadDataDrink () {
   "use strict";
   $.ajax({
-    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/drinks",
+    url : "https://api.allorigins.win/get?url=http://42.115.221.44:8080/devcamp-pizza365/drinks",
     type : "GET",
     dataType : "json",
     async : false,
-    success : pValue => addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",pValue),
+    success : pValue => addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",JSON.parse(pValue.contents)),
     error : pErr => console.log(pErr)
   })
 
