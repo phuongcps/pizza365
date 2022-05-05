@@ -5,7 +5,7 @@ function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
   
   $.ajax({
-    url : `http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
+    url : `https://api.scraperapi.com?api_key=fe20d2631b5f2bd4d6b3557d13c65064&url=http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
     type : "GET",
     dataType : "json",
     async: false,
