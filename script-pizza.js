@@ -5,7 +5,7 @@ function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
   
   $.ajax({
-    url : "http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/"+paramID,
+    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/"+paramID,
     type : "GET",
     dataType : "json",
     async: false,
@@ -19,9 +19,8 @@ function callAjaxApiVoucher (paramID) {
 // Load data nước
 function loadDataDrink () {
   "use strict";
-
   $.ajax({
-    url : "http://42.115.221.44:8080/devcamp-pizza365/drinks",
+    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/drinks",
     type : "GET",
     dataType : "json",
     async : false,
@@ -42,7 +41,7 @@ function loadDataDrink () {
 // Gửi đơn hàng và tạo đơn tại backend khi đã confirm
 function callAjaxGetOrderId (paramOrderObj) {
   $.ajax ({
-    url : "http://42.115.221.44:8080/devcamp-pizza365/orders",
+    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/orders",
     type : "POST",
     dataType : "json",
     data : JSON.stringify(paramOrderObj),
@@ -56,7 +55,7 @@ function callAjaxGetOrderId (paramOrderObj) {
 
 function callAjaxByOrderId(paramId) {
 $.ajax({
-  url : "http://42.115.221.44:8080/devcamp-pizza365/orders/"+paramId,
+  url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/orders/"+paramId,
   type : "GET",
   dataType : "json",
   async : false,
