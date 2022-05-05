@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Bootstrap template- Pizza 365 project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Jquery - phải đặt trước Bootstrap-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <!-- Bootstrap phải đặt sau jquery -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Các file css và js tự định nghĩa thêm -->
+  <link rel="stylesheet" href="color.css">
+  <script src="script-pizza.js"></script>
+
+  <!--For Developer Only (Sử dụng để điền nhanh input test code)-->
+  <script src="script-fast-testing-data.js"></script> 
+
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+  <style>
+    .select2-selection {
+      padding-right: calc(1.6em + 0.75rem);
+      background-repeat: no-repeat;
+      background-position: center right calc(1.3em + 0.375rem);
+      background-size: calc(0.8em + 0.375rem);
+    }
+    .select2-selection.is-invalid {
+      border-color: #e3342f;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    }
+    .select2-selection.is-valid {
+      border-color: #28a745;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    }
+  </style>
+</head>
+<body>
+
+<!-- Menu -->
+<div class="container-fluid bg-light">
+  <div class="row">
+    <div class="col-sm-12">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-orange">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav nav-fill w-100">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pizza-size">Combo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pizza-type">Loại Pizza</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#order">Gửi đơn hàng</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="container" style="padding: 120px 0 50px 0;">
+  <div class="row">
+    <div class="col-sm-12" id="content-body">
+      <!--Header with carousel-->
+      <div class="row">
+        <!-- Title row home -->
+        <div class="col-sm-12 pb-4" id="heading-title">
+          <div class="row">
+            <div class="col-sm-4 text-orange">
+              <p class="h1 font-weight-bold">Pizza 365</p>
+              <p class="h6 font-italic">Truly Italian</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Slide row home -->
+        <div class="col-sm-12">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="images/pizza-1.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="images/pizza-2.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="images/pizza-3.jpg" alt="Third slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="images/pizza-4.jpg" alt="Fourth slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Title what we offer -->
+        <div class="col-sm-12 text-center p-4 mt-4">
+          <p class="h2 p-2 border-bottom text-orange">Tại sao lại Pizza 365</p>
+        </div>
+
+        <!-- Content what we offer -->
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-3 p-4 bg-lightgoldenrodyellow border border-warning">
+              <p class="h3 p-2">Đa dạng</p>
+              <p class="p-2">Số lượng pizza đa dạng, có đầy đủ các loại pizza đang hot nhất hiện nay</p>
+            </div>
+            <div class="col-sm-3 p-4 bg-yellow border border-warning">
+              <p class="h3 p-2">Chất lượng</p>
+              <p class="p-2">Nguyên liệu sạch 100% rõ nguồn gốc, quy trình chế biến đảm bảo vệ sinh an toàn thực phẩm</p>
+            </div>
+            <div class="col-sm-3 p-4 bg-lightsalmon border border-warning">
+              <p class="h3 p-2">Hương vị</p>
+              <p class="p-2">Đảm bảo hương bị ngon, độc, lạ mà bạn chỉ có thể trải nghiệm từ Pizza 365</p>
+            </div>
+            <div class="col-sm-3 p-4 bg-orange border border-warning">
+              <p class="h3 p-2">Dịch vụ</p>
+              <p class="p-2">Nhân viên thân thiện, nhà hàng hiện đại. Dịch vụ giao hàng nhanh chất lượng, tân tiến</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pizza-size" class="row">
+        <!-- Title what we offer -->
+        <div class="col-sm-12 text-center text-orange p-4 mt-4">
+          <p class="h2 p-1 border-bottom">Chọn size pizza</p>
+          <p><span class="p-2">Chọn combo pizza phù hợp với nhu cầu của bạn</span></p>
+        </div>
+        <!-- Content what we offer -->
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card" title="S">
+                <div class="card-header bg-orange text-center">
+                  <h4>S (small)</h4>
+                </div>
+                <div class="card-body text-center">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Đường kính: <b>20cm</b></li>
+                    <li class="list-group-item">Sườn nướng: <b>2</b></li>
+                    <li class="list-group-item">Salad: <b>200g</b></li>
+                    <li class="list-group-item">Nước ngọt: <b>2</b></li>
+                    <li class="list-group-item"><h2><b>150.000</b></h2>VNĐ</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-center">
+                  <button title="S" id="btn-pizza-size-small" class="btn btn-orange w-100">Chọn</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card" title="M">
+                <div class="card-header bg-orange text-center">
+                  <h4>M (medium)</h4>
+                </div>
+                <div class="card-body text-center">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Đường kính: <b>25cm</b></li>
+                    <li class="list-group-item">Sườn nướng: <b>4</b></li>
+                    <li class="list-group-item">Salad: <b>300g</b></li>
+                    <li class="list-group-item">Nước ngọt: <b>3</b></li>
+                    <li class="list-group-item"><h2><b>200.000</b></h2>VNĐ</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-center">
+                  <button title="M" id="btn-pizza-size-medium" class="btn btn-orange w-100">Chọn</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card" title="L">
+                <div class="card-header bg-orange text-center">
+                  <h4>L (large)</h4>
+                </div>
+                <div class="card-body text-center">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Đường kính: <b>30cm</b></li>
+                    <li class="list-group-item">Sườn nướng: <b>8</b></li>
+                    <li class="list-group-item">Salad: <b>500g</b></li>
+                    <li class="list-group-item">Nước ngọt: <b>4</b></li>
+                    <li class="list-group-item"><h2><b>250.000</b></h2>VNĐ</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-center">
+                  <button title="L" id="btn-pizza-size-large" class="btn btn-orange w-100">Chọn</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pizza-type" class="row">
+        <!-- Title Who We Are -->
+        <div class="col-sm-12 text-center text-orange p-4 mt-4">
+          <p class="h2 p-2 border-bottom border-warning">Chọn loại Pizza</p>
+        </div>
+
+        <!-- Content Chọn loại Pizza -->
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-lg-4 d-lg-flex align-items-stretch">
+              <div class="card w-100" style="width: 18rem;">
+                <img src="images/seafood.jpg" class="card-img-top">
+                <div class="card-body">
+                  <h4><b>OCEAN MANIA</b></h4>
+                  <p class="text-uppercase">Pizza hải sản xốt mayonnaise</p>
+                  <p class="text-capitalize">Xốt cà chua, phô mai mozzarella, tôm, mực, thanh cua, hành tây.</p>
+                </div>
+                <div class="card-footer">
+                  <p><button title="seafood" id="btn-pizza-type-seafood" class="btn btn-orange w-100">Chọn</button></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 d-lg-flex align-items-stretch">
+              <div class="card w-100" style="width: 18rem;">
+                <img src="images/hawaiian.jpg" class="card-img-top">
+                <div class="card-body">
+                  <h4><b>HAWAIIAN</b></h4>
+                  <p class="text-uppercase">Pizza dăm bông dừa kiểu hawaii</p>
+                  <p class="text-capitalize">Xốt cà chua, phô mai mozzarella, thịt dăm bông, thơm.</p>
+                </div>
+                <div class="card-footer">
+                  <p><button title="hawaii" id="btn-pizza-type-hawaii" class="btn btn-orange w-100">Chọn</button></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 d-lg-flex align-items-stretch">
+              <div class="card w-100" style="width: 18rem;">
+                <img src="images/bacon.jpg" class="card-img-top">
+                <div class="card-body">
+                  <h4><b>CHEESY CHICKEN BACON</b></h4>
+                  <p class="text-uppercase">Pizza gà phô mai thịt heo xông khói</p>
+                  <p class="text-capitalize">Xốt phô mai, thịt gà, thịt heo muối, phô mai mozzarella, cà chua.</p>
+                </div>
+                <div class="card-footer">
+                  <p><button title="bacon" id="btn-pizza-type-bacon" class="btn btn-orange w-100">Chọn</button></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Drink Select-->
+      <div id="drink" class="row">
+        <div class="col-sm-12 p-2 container jumbotron mt-5 text-center">
+          <div title="info-customer-input" class="form-group">
+            <h2><label for="select-drink" class="text-orange form-label">Chọn đồ uống</label></h2>
+            <select title="Nước uống" id="select-drink" class="form-control" >
+              <option value="" disabled hidden selected>Tất cả loại nước uống</option>
+            </select>
+            <img id="select-drink-image" class="w-50 mt-2" src="images/Drink.jpg">
+          </div>
+        </div>
+      </div>
+
+      <div id="order" class="row">
+        <!-- Title Contact Us -->
+        <div class="col-sm-12 text-center p-4 mt-4">
+          <h2 class="p-2 border-bottom text-orange">Gửi đơn hàng</h2>
+        </div>
+
+        <!-- Content Contact Us -->
+        <div class="col-sm-12 p-2 jumbotron">
+          <div title="info-customer-input" class="form-group">
+            <label class="form-label" for="input-fullname">Họ và tên <span class = "text-danger">(*)</span></label>
+            <input title="Họ và tên" data-property="hoTen" data-checktype="required|name" type="text" class="form-control" id="input-fullname" placeholder="Họ và tên">
+            <small class="form-text text-muted">Họ và tên không được để trống, chỉ bao gồm chữ cái Latin (có thể có dấu), không có số và các ký tự khác</small>
+            <div class="form-message small valid-feedback">Họ và tên hợp lệ</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="input-email">Email <span class = "text-danger">(*)</span></label>
+            <input title="Email" data-checktype="required|email" data-property="email" type="text" class="form-control" id="input-email" placeholder="Email">
+            <small class="form-text text-muted">Email không được để trống, phải là email thực tế (có 1 @, có ít nhất 1 dấu chấm và tuân theo quy luật của một email</small>
+            <div class="form-message small valid-feedback">Email hợp lệ</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="input-dien-thoai">Điện thoại <span class = "text-danger">(*)</span></label>
+            <input title="Số điện thoại" data-checktype="required|phone" data-property="soDienThoai" type="text" class="form-control" id="input-dien-thoai" placeholder="Điện thoại" pattern="[0]{1}[35789]{1}[0-9]{8}">
+            <small class="form-text text-muted">Số điện thoại là số, phải đủ 10 số ,bắt đầu bằng só 0, thuộc nhà mạng Việt Nam (03,05,07,08,09) (Có thể thay 0 bằng 84 hoặc +84)</small>
+            <div class="form-message small valid-feedback">Số điện thoại hợp lệ</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="input-dia-chi">Địa chỉ <span class = "text-danger">(*)</span></label>
+            <input title="Địa chỉ" data-checktype="required" data-property="diaChi" type="text" class="form-control" id="input-dia-chi" placeholder="Địa chỉ">
+            <div class="form-message small valid-feedback">Địa chỉ hợp lệ</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="input-message">Lời nhắn (Nếu có)</label>
+            <input title="Lời nhắn" data-property="loiNhan" type="text" class="form-control" id="input-message" placeholder="Lời nhắn">
+            <div class="form-message small valid-feedback">Lời nhắn đã nhập</div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="input-voucher">Mã giảm giá (voucher ID) - Nếu có</label>
+            <input title="Voucher" data-property="idVourcher" data-checktype="number" type="text" class="form-control" id="input-voucher" placeholder="Voucher ID">
+            <div class="form-message small valid-feedback"></div>
+            <div class="form-message small invalid-feedback"></div>
+            <small class="form-text text-muted" style="display: none;"></small>
+            <small class="form-text text-muted">Nếu bạn chưa có voucher, hãy tham dự trò chơi quay số trúng thưởng <a href="#order">tại đây</a><span class="text-danger"> (Tính năng đang được phát triển)</span></small>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="select-pizza-size">Kích cỡ pizza đã chọn <span class = "text-danger">(*)</span></label>
+            <select title="Combo kích cỡ Pizza" data-checktype="required" data-property="kichCo" class="form-control custom-select" disabled id="select-pizza-size">
+              <option value="" hidden disabled selected>Ấn nút ở trên để chọn kích cỡ Pizza</option>
+              <option value="S">Small</option>
+              <option value="M">Medium</option>
+              <option value="L">Large</option>
+            </select>
+            <div class="form-message small valid-feedback">Combo Pizza Size đã được chọn</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="select-pizza-type">Hương vị pizza đã chọn<span class = "text-danger">(*)</span></label>
+            <select title="Loại Pizza" data-checktype="required" data-property="loaiPizza" class="form-control custom-select" id="select-pizza-type" disabled>
+              <option value="" hidden disabled selected>Ấn nút ở trên để chọn hương vị Pizza</option>
+              <option value="hawaii">Hương vị Hawaii</option>
+              <option value="seafood">Hải sản nhiệt đới</option>
+              <option value="bacon">Thịt xông khói</option>
+            </select>
+            <div class="form-message small valid-feedback">Loại Pizza đã được chọn</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-customer-input" class="form-group">
+            <label for="drink-confirm">Nước uống đã chọn <span class = "text-danger">(*)</span></label>
+            <select title="Nước uống" data-checktype="required" data-property="idLoaiNuocUong" id="drink-confirm" class="form-control custom-select" disabled>
+              <option value="" hidden disabled selected>Chọn nước uông ở phía trên</option>
+            </select>
+            <div class="form-message small valid-feedback">Nước uống đã được chọn</div>
+            <div class="form-message small invalid-feedback"></div>
+          </div>
+          <div title="info-note-confirm" class="form-group">
+            <label>Lưu ý: <br> Các ô có <span class = "text-danger">(*)</span> là bắt buộc phải nhập hoặc chọn <br>
+              <p>Trước khi ấn nút gửi đơn phải chọn kích cỡ Pizza và hương vị Pizza và nước ngọt</p>
+            </label>
+            <button type="button" id="btn-send-data" class="btn bg-orange w-100">Gửi đơn</button>
+          </div>
+        </div>
+      </div>
+      <div id="last-order-id" class="row">
+        <div class="col-sm-12 text-center p-4 mt-4">
+          <h2 class="p-2 border-bottom text-orange">Last Order Id</h2>
+        </div>
+        <div class="col-sm-12 jumbotron">
+          <div class="row mb-3">
+            <div class="col-sm-4">
+              <label for="last-order-id-return"> <b>Mã đơn hàng gần nhất (Last Order Id)</b></label>
+            </div>
+            <div class="col-sm-4">
+              <input id="last-order-id-return" type="text" class="form-control bg-light" disabled>
+            </div>
+          </div>
+          <div class="row form-group">
+            <button class="btn btn-success mr-3" id="last-order-id-detail">Xem chi tiết đơn hàng</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-search-order-id" id="btn-open-modal-search-order-id">Tra cứu đơn hàng khác</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="container-fluid bg-orange p-5">
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <h4 class="m-2">Footer</h4>
+      <a href="#" class="btn btn-dark m-3"><i class="fa fa-arrow-up"></i>To the top</a>
+      <div class="m-2">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Search Order Id-->
+<div id="modal-search-order-id" class="modal fade" tabindex="-1" style="overflow-y:auto">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tìm kiếm đơn hàng</h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <p class="h3 text-center mt-3 mb-3"> Order details - Dành cho khách hàng</p>
+          <div class="row text-center">
+            <div class="col-sm-12 jumbotron">
+              <div class="row form-group text-left mb-4">
+                <div class="col-sm-6">
+                  <label class="form-label">Tìm kiếm đơn hàng by Order Id</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="modal-input-search-order-id">
+                </div>
+              </div>
+              <button class="btn btn-info float-right" id="modal-btn-search-order-id">Tìm kiếm</button>
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <hr class="mt-5 mb-5" />
+          </div>
+          <div title="order-detail" class="row form-group">
+            <label>Order ID (mã đơn hàng):</label>
+            <input data-property="orderId" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail" class="row form-group">
+            <label>Combo Pizza</label>
+            <input data-property="kichCo" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Đường kính Pizza (cm)</label>
+            <input data-property="duongKinh" type="text" class="form-control" alt="duongKinh" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Sườn nướng (miếng)</label>
+            <input data-property="suon" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Chọn đồ uống</label>
+            <input data-property="idLoaiNuocUong" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Số lượng nước uống</label>
+            <input data-property="soLuongNuoc" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Voucher ID (mã voucher)</label>
+            <input data-property="idVourcher" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Loại Pizza (pizza type)</label>
+            <input data-property="loaiPizza" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Salad (gr)</label>
+            <input data-property="salad" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Thành tiền</label>
+            <input data-property="thanhTien" type="text" class="form-control" disabled>
+          </div>
+          <div  title="order-detail" class="row form-group">
+            <label>Giảm giá (discount)</label>
+            <input data-property="giamGia" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Họ và tên</label>
+            <input data-property="hoTen" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail" class="row form-group">
+            <label>Email</label>
+            <input data-property="email" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail" class="row form-group">
+            <label>Số điện thoại</label>
+            <input data-property="soDienThoai" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail" class="row form-group">
+            <label>Địa chỉ</label>
+            <input data-property="diaChi" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Lời nhắn</label>
+            <input data-property="loiNhan" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Trạng thái đơn hàng</label>
+            <input data-property="trangThai" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Ngày tạo đơn</label>
+            <input data-property="ngayTao" type="text" class="form-control" disabled>
+          </div>
+          <div title="order-detail"  class="row form-group">
+            <label>Ngày cập nhật</label>
+            <input data-property="ngayCapNhat" type="text" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">Quay lại</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Order Id Detail-->
+<div id="modal-last-order-info" class="modal fade" tabindex="-1" style="overflow-y:auto">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông tin đơn hàng vừa đặt</h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <p class="h3 text-center mt-5"> Chi tiết đơn hàng</p>
+          <div id="modal-order-detail-info">
+            <div title="order-detail" class="row form-group">
+              <label>Order ID (mã đơn hàng):</label>
+              <input data-property="orderId" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail" class="row form-group">
+              <label>Combo Pizza</label>
+              <select data-property="kichCo" type="text" class="form-control" disabled>
+                <option value="">Chọn Pizza Size</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+              </select>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Đường kính Pizza (cm)</label>
+              <input data-property="duongKinh" type="text" class="form-control" alt="duongKinh" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Sườn nướng (miếng)</label>
+              <input data-property="suon" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Chọn đồ uống</label>
+              <select data-property="idLoaiNuocUong" class="form-control" disabled>
+                <option value="" selected hidden>Chọn đồ uống</option>
+              </select>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Số lượng nước uống</label>
+              <input data-property="soLuongNuoc" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Voucher ID (mã voucher)</label>
+              <input data-property="idVourcher" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Loại Pizza (pizza type)</label>
+              <select data-property="loaiPizza" type="text" class="form-control" disabled>
+                <option value="">Chọn Pizza Type</option>
+                <option value="seafood">OCEAN MANIA</option>
+                <option value="bacon">CHEESY CHICKEN BACON</option>
+                <option value="hawaii">HAWAIIAN</option>
+              </select>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Salad (gr)</label>
+              <input data-property="salad" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Thành tiền</label>
+              <input data-property="thanhTien" type="text" class="form-control" disabled>
+            </div>
+            <div  title="order-detail" class="row form-group">
+              <label>Giảm giá (discount)</label>
+              <input data-property="giamGia" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Họ và tên</label>
+              <input data-property="hoTen" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail" class="row form-group">
+              <label>Email</label>
+              <input data-property="email" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail" class="row form-group">
+              <label>Số điện thoại</label>
+              <input data-property="soDienThoai" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail" class="row form-group">
+              <label>Địa chỉ</label>
+              <input data-property="diaChi" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Lời nhắn</label>
+              <input data-property="loiNhan" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Trạng thái đơn hàng</label>
+              <input data-property="trangThai" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Ngày tạo đơn</label>
+              <input data-property="ngayTao" type="text" class="form-control" disabled>
+            </div>
+            <div title="order-detail"  class="row form-group">
+              <label>Ngày cập nhật</label>
+              <input data-property="ngayCapNhat" type="text" class="form-control" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Return Order Id-->
+<div id="modal-return-order-id" class="modal fade" tabindex="-1" style="overflow-y:auto">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Order Id</h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="container bg-orange">
+          <p class="h3 text-center mt-2"> Đơn hàng gửi thành công </p>
+          <p class="text-center" >Cảm ơn bạn đã đặt hàng tại Pizza 365 . Đây là Order Id đặt hàng của bạn</p>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <label for="order-id-return"> <b>Mã đơn hàng (Order Id)</b></label>
+            </div>
+            <div class="col-sm-4">
+              <input id="order-id-return" type="text" class="form-control bg-light" disabled>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-sm-12">
+              <p class="font-weight-bold text-danger">Bạn hãy ghi nhớ Order Id này. Trong trường hợp bạn mất Order Id. Bạn hãy liên hệ đến số điện thoại 1800.xxxx , ấn phím 1 để được hỗ trợ nhé</p>
+              <p class="font-weight-bold text-secondary">Bạn có thể xem chi tiết đơn hàng tại nút chi tiết đơn hàng</p>
+              <p class="font-weight-bold text-primary">Ngoài ra bạn có thể tìm kiếm các đơn hàng khác tại nút Tra cứu đơn hàng khác</p>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button id="modal-btn-order-detail-info" class="btn btn-success mr-auto">Chi tiết đơn hàng</button>
+          <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+
+<script>
+  $(function () {
+      //Initialize Select2 Elements
+      
+      $('.select2bs4').select2({
+          width: "100%",
+          theme: "bootstrap4",
+
+      })
+  })
+</script>
+</body>
+
+<script>
+"use strict";
+/*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+// Test Code
+// phải trích xuất khi load trang , tránh trường hợp sửa HTML bằng tay (sơ ý hoặc cố tình gây lỗi) để hack gửi dữ liệu
+// trích xuất HTML các phần tử khách hàng điền vào bằng CSS Selector
+// Ứng dụng closure để bảo vệ dữ liệu và tiện truy xuất
+const gDATA_INPUT_ELEMENT = $("div[title=info-customer-input] [data-property]").get();
+// Trong file script closure testing and modify html
+const gDATA_INPUT_ELEMENT_CLOSURE = storedElementHTML(gDATA_INPUT_ELEMENT);
+// trích xuất HTML các phần tử khách hàng bắt buộc điền vào bằng CSS Selector
+const gDATA_INPUT_REQUIRED_ELEMENT = $("div[title=info-customer-input] [data-checktype]").get();
+const gDATA_INPUT_REQUIRED_CLOSURE = storedElementHTML(gDATA_INPUT_REQUIRED_ELEMENT);
+gDATA_INPUT_ELEMENT_CLOSURE.changeDatasetToDataJqueryAndSeal();
+
+// lưu trữ các thông tin về size của pizza để dễ dàng trích xuất khi ấn nút chọn size 
+// Property chính là param của nút chọn
+const gSIZE_OF_PIZZA_DETAIL = {
+  S : {
+    menuName : "Small",
+    duongKinh : 20,
+    suon : 2,
+    salad : 200,
+    soLuongNuoc : 2,
+    thanhTien : 150000,
+    idButton : "#btn-pizza-size-small",
+  },
+  M : {
+    menuName : "Medium",
+    duongKinh : 25,
+    suon : 4,
+    salad : 300,
+    soLuongNuoc : 3,
+    thanhTien : 200000,
+    idButton : "#btn-pizza-size-medium"
+  },
+  L : {
+    menuName : "Large",
+    duongKinh : 30,
+    suon : 8,
+    salad : 500,
+    soLuongNuoc : 4,
+    thanhTien : 250000,
+    idButton : "#btn-pizza-size-large"
+  }
+}
+const gTYPE_OF_PIZZA_DETAIL = {
+  hawaii : {
+    typeName : "HAWAIIAN",
+    idButton : "#btn-pizza-type-hawaii"
+  },
+  seafood : {
+    typeName : "OCEAN MANIA",
+    idButton : "#btn-pizza-type-seafood"
+  },
+  bacon : {
+    typeName : "CHEESY CHICKEN BACON",
+    idButton : "#btn-pizza-type-bacon"
+  },
+}
+
+// Thử nghiệm tính năng
+// Freeze Obj và nested Obj 2 biến lưu trữ các thông tin Pizza (file anti-modify-object-testing)
+modifyAllObject ("freeze",gSIZE_OF_PIZZA_DETAIL,gTYPE_OF_PIZZA_DETAIL);
+
+// bạn có thể dùng để lưu loại pizza đươc chọn, mỗi khi khách chọn, bạn lại đổi giá trị cho nó
+var gSelectedPizzaSize = "";
+var gSelectedPizzaType = ""; 
+var gSelectedPizzaTypeDetail = "";
+var gCustomerOrderDetail = "";
+
+/*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+//this.addEventListener('load',onPageLoading);
+window.addEventListener('load',onPageLoading);
+
+// Check data valid động (Ngay cả trước khi ấn nút gửi đơn)
+gDATA_INPUT_REQUIRED_CLOSURE.getAllElementJquery().each(function(index){
+  $(this).on("blur",function() {
+    dynamicCheckDataForm (this,gDATA_INPUT_REQUIRED_CLOSURE)
+  })
+})
+
+// Check voucher hợp lệ hay không (Ngay cả trước khi ấn gửi đơn)
+$("#input-voucher").on("blur",function(){
+  let vDiscount = this.value.trim() ? callAjaxApiVoucher(this.value.trim()) : "";
+  if (vDiscount != 0) {
+    $(this).removeClass("is-valid is-invalid")
+           .addClass("is-valid")
+           .closest("div")
+           .children("div.valid-feedback")
+           .html(`Mã voucher hợp lệ. Bạn được giảm ${vDiscount}%`);
+    $(this).closest("div")
+           .children("small:eq(0)")
+           .hide()
+  } else {
+      $(this).removeClass("is-valid is-invalid")
+             .addClass(isNaN(this.value.trim()) ? "is-invalid" : "")
+             .closest("div")
+             .children("small:eq(0)")
+             .show()
+             .html(!this.value.trim()? 
+                `Bạn không nhập voucher - Bạn không được giảm giá`
+                :`Voucher bạn nhập không hợp lệ - Bạn không được giảm giá`
+             )
+  } 
+})
+
+$("#last-order-id-detail").on("click",() => alert("Bạn chưa đặt đơn hàng nào"))
+
+/*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+//hàm thực hiện khi load trang
+function onPageLoading() {
+  "use strict";
+
+  // Add onclick event cho 3 nút Pizza Size
+  $("button[id^=btn-pizza-size-]").on("click",function(){
+    onBtnChoosePizzaSize(this.title);
+  })
+
+  // Add onclick event cho 3 nút Pizza Type
+  $("button[id^=btn-pizza-type-]").on("click",function(){
+    onBtnChoosePizzaType(this.title);
+  })
+
+  //Gán sự kiện onclick nút gửi đơn
+  $("button#btn-send-data").click(function(){
+    onBtnSendData()
+  })
+
+  // Gán sự kiến nút tìm đơn hàng by Order ID (Modal)
+  $("#modal-btn-search-order-id").on("click",() => {
+    var vOrderId = $("#modal-input-search-order-id").val().trim();
+    vOrderId ? callAjaxByOrderId (vOrderId) : alert (`Bạn chưa nhập order Id`)
+  })
+
+  // Gán sự kiện nút mở modal tìm kiếm đơn hàng by Order Id
+  $("#btn-open-modal-search-order-id").on("click",() => $("#modal-search-order-id :input").val(""));
+
+  // đổ data các loại nước vào data
+  loadDataDrink ();
+
+  // khi thay đổi loại nước lựa chọn thì load vào console
+  $("#select-drink").on("change",function(){
+
+    $("#drink-confirm").val($(this).find("option:selected").val());
+    $("#drink-confirm")[0].dispatchEvent(new Event ("blur"));
+
+    $("#select-drink-image").prop("src",`images/${$(this).val()}.jpg`);
+
+    console.log (`Mã nước uống bạn chọn là : ${this.value}`);
+    console.log (`Tên loại nước uống bạn chọn là ${$(this).find("option:selected").text()}`);
+  })
+}
+
+
+// hàm thay đổi dữ liệu khi chọn Pizza Size
+function onBtnChoosePizzaSize (paramPizzaSize) {
+  "use strict";
+  /* khi ấn nút chọn Pizza Size với Param được quy định tại từng nút
+  Hàm sẽ lấy giá trị của Object gSIZE_OF_PIZZA_DETAIL tương ứng với Property là param của nút 
+  và gán với biến global thông tin cỡ bánh khách chọn */ 
+  
+  // B1 : Gán dữ liệu 
+  // Lấy giá trị array chi tiết của loại pizza kích cỡ tương ứng với paramPizzaSize với giá trị lần lượt
+  var vPizzaSelectDetail = gSIZE_OF_PIZZA_DETAIL[paramPizzaSize];
+  // trả về biến global loại Pizza Size chọn để xử lý sau này
+  gSelectedPizzaSize = paramPizzaSize;
+
+  // tạo Object để xuất dữ liệu
+  var vSelectedMenuStructure = {
+    menuName : paramPizzaSize,
+    duongKinhCM : vPizzaSelectDetail.duongKinh,
+    suonNuong : vPizzaSelectDetail.suon,
+    saladGr : vPizzaSelectDetail.salad,
+    drink : vPizzaSelectDetail.soLuongNuoc,
+    priceVND : vPizzaSelectDetail.thanhTien
+  }
+
+  // B2 : Kiểm tra dữ liệu (Bỏ qua vì không có input)
+
+  // B3 : Xuất dữ liệu ra console để biết đã chọn loại Pizza nào 
+  console.log(`Thông tin Pizza bạn chọn : ${JSON.stringify(vSelectedMenuStructure)}`);
+  
+  // gắn giá trị ở input dưới để khách check thông tin
+  $("#select-pizza-size").val(paramPizzaSize)
+  $("#select-pizza-size").blur();
+}
+
+// hàm thay đổi dữ liệu khi chọn Pizza Type
+function onBtnChoosePizzaType (paramPizzaType) {
+  "use strict";
+
+  // Hàm sẽ thay đổi màu nút của hương vị Pizza + lấy giá trị hương vị pizza vào ô input (Đã disabled nhập) để khách biết hương vị đã được chọn trước khi gửi đơn
+  // Đồng thời gắn các giá trị cần lấy ra hàm global để tiện truy xuất
+
+  //gắn các giá trị cần lấy ra hàm global để tiện truy xuất. Lưu ý object có thể truy xuất như Array thông qua tên (thay vì số như array thường)
+  var vPizzaTypeSelectDetail = gTYPE_OF_PIZZA_DETAIL[paramPizzaType];
+  gSelectedPizzaType = paramPizzaType;
+  gSelectedPizzaTypeDetail = vPizzaTypeSelectDetail.typeName;
+
+  //load ra console cho biết đã chọn loại pizza nào
+  console.log (`Loại Pizza bạn chọn : ${paramPizzaType}`);
+  console.log (`Tên loại Pizza bạn chọn : ${vPizzaTypeSelectDetail.typeName}`);
+  // lấy giá trị hương vị pizza vào ô input (Đã disabled nhập) để khách biết hương vị đã được chọn trước khi gửi đơn
+  $("#select-pizza-type").val(paramPizzaType);
+  $("#select-pizza-type")[0].dispatchEvent(new Event ("blur"))
+
+}
+
+// hàm xử lý khi ấn nút gửi đơn
+function onBtnSendData () {
+  "use strict";
+  /*
+  khi Ấn nút Gửi đơn hàm sẽ kiểm tra các thông tin đã nhập hợp lệ chưa, đã chọn loại bánh, kích cỡ chưa, nếu chưa sẽ báo lỗi cho đến khi nhập đúng hết
+  Nếu hợp lệ thì kiểm tra Voucher và giá giảm (nếu có)
+  Sau đó xuất ra màn hình cho người dùng xác nhận trước khi gửi đơn hàng chính thức cho website 
+  */
+  // khai báo 1 biến chứa các thông tin cần gửi vào website (back-end) để xử lý
+  var vObjectRequest = {
+    hoTen: "",
+    email: "",
+    soDienThoai: "",
+    diaChi: "",
+    loiNhan: "",
+    idLoaiNuocUong: "",
+    idVourcher: "",
+    kichCo: "",
+    duongKinh: "",
+    suon: "",
+    salad: "",
+    soLuongNuoc: "",
+    thanhTien: "",
+    loaiPizza: ""
+  }
+  
+  // Thử nghiệm tính năng
+  // Seal (Không thêm property mới , ko xóa property cũ) vObjRequest
+  modifyAllObject ("seal",vObjectRequest);
+
+  // B1 : Gắn dữ liệu cho các property của biến cục bộ . 
+  inputCustomerInfo (vObjectRequest);
+
+  // B2 : Kiểm tra dữ liệu . Khi không có bất kỳ lỗi nào thì trả về true.
+  var vCheckInfoValid = checkCustomerInfo(vObjectRequest);
+
+
+  // B3 : Xuất dữ liệu . Nếu kiểm tra dữ liệu = true thì thực hiện tiếp xuất dữ liệu ra màn hình và gắn giá trị cho biến toàn cục gửi về back-end, sai thì không làm gì cả  
+
+  if (vCheckInfoValid) {
+    exportCustomerInfo (vObjectRequest);
+    gCustomerOrderDetail = JSON.parse(JSON.stringify(vObjectRequest));
+  } 
+    
+}
+
+// hàm xử lý khi ấn nút xác nhận đơn
+function onBtnConfirmData () {
+  "use strict";
+
+  // Hàm có tác dụng gửi data lên console (Sau này là back-end)
+  var vOrderConfirm = "Thông tin đơn hàng đã đúng chưa ?" + "\n" + 
+  "Nếu đúng thì ấn OK để gửi cho cửa hàng" + "\n" + 
+  "Nếu chưa thì ấn cancel để chỉnh sửa và gửi đơn lại nhé" ;
+
+  console.log(`%cBước 4:Xác nhận và xuất đơn hàng`,"color:pink")
+  
+  if (confirm(vOrderConfirm) === true) {
+    alert ("Đơn hàng đã được xác nhận và đang được gửi đến cửa hàng");
+    console.log("Đơn hàng đã được xác nhận và đang được gửi đến cửa hàng");
+    callAjaxGetOrderId (gCustomerOrderDetail);
+  } else {
+      alert (`Bạn chỉnh sửa lại thông tin rồi ấn gửi đơn lại nhé`);
+      $("#modal-confirm-order").modal("hide");
+      console.log("Đơn hàng chưa được xác nhận");
+    }
+  }
+
+/*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+
+// hàm nhập thông tin khách hàng cũng như đơn hàng vào biến Obj request
+function inputCustomerInfo (paramCustomerInfo) {
+  "use strict";
+
+  // Gán các thông tin khách hàng điền vào Object Request
+  gDATA_INPUT_ELEMENT_CLOSURE.getAllElementJquery().each(function(){
+    // Lấy Name Attribute của Element (Trùng với property của Obj Request)
+    // let bNameAttribute = this.dataset.property; không nên lấy trực tiếp từ HTML vì rất dễ bị chỉnh sửa gây lỗi dữ liệu
+    // Sử dụng closure 
+    let bNameAttribute = this.dataset.property ? this.dataset.property : $(this).data("dataProperty");
+    // Lấy Value Element Input ;
+    let bValueElement = this.value.trim();
+    // Gán value cho Property (trùng với Name Attribute của Element có value tương ứng);
+    paramCustomerInfo[bNameAttribute] = bValueElement;
+  })
+
+  // Gán kích cỡ pizza và loại pizza khách chọn vào
+  paramCustomerInfo.kichCo = gSelectedPizzaSize;
+  paramCustomerInfo.loaiPizza = gSelectedPizzaType;
+
+  // Nếu khách đã chọn kích cỡ Pizza thì lấy các thông tin chi tiết Pizza Size để gán vào Obj request
+  // Nếu không thì bỏ qua (Kích cỡ sẽ rỗng và sẽ được lọc tại bước kiểm tra dữ liệu)
+  if (gSelectedPizzaSize) {
+    
+    // Tạo một Object mới dựa theo Object cũ (Không sử dụng cách gán thông thường do đây là tham chiếu)
+    var vPizzaSizeDetail = JSON.parse (JSON.stringify(gSIZE_OF_PIZZA_DETAIL[gSelectedPizzaSize]));
+    
+    // Gán các property của Pizza Size vào Object request (Property của Obj trùng với property Pizza Size)
+    // Nếu property Obj request ko có thì bỏ qua
+    for (let bIndex in vPizzaSizeDetail) {
+      if (paramCustomerInfo[bIndex] !== undefined) {
+        paramCustomerInfo[bIndex] = vPizzaSizeDetail[bIndex];
+      }
+    }
+  }
+
+  // Xuất ra console thông tin khách đã nhập và loại pizza khách chọn
+  console.log (`%cBước 1 : Nhập thông tin vào Object Request`,"color:red");
+  console.log(paramCustomerInfo);
+
+}
+
+// kiểm tra các giá trị nhập vào . Nếu qua hết thì trả về true . Nếu false thì quăng ra lỗi và trả về false
+function checkCustomerInfo (paramCustomerInfo) {
+  "use strict";
+  console.log("%cBước 2 : Kiểm tra dữ liệu nhập vào : ","color:blue")
+
+  // cú pháp try , throw , catch 
+  try {
+
+    let bInputError = "";
+
+
+    gDATA_INPUT_REQUIRED_CLOSURE.getAllElementJquery().each(function(){
+      // Invalid form bootstrap 4 , nested function , closure 
+      // Trong file dynamic check-valid-input
+      dynamicCheckDataForm (this,gDATA_INPUT_REQUIRED_CLOSURE,paramCustomerInfo);
+    });
+    $("#input-voucher").blur();
+    // Check data lỗi
+    
+    bInputError = checkDataValid (gDATA_INPUT_REQUIRED_CLOSURE.getAllElement(),gDATA_INPUT_REQUIRED_CLOSURE,paramCustomerInfo)
+    
+    if (bInputError) {
+      throw (bInputError);
+    }
+    
+  }
+  
+  // Nếu có lỗi thì báo ra lỗi và trả về giá trị false
+  catch (err) {
+    alert ("Dữ liệu nhập chưa hợp lệ. Kiểm tra và nhập lại nhé")
+    console.log("Kết quả : false");
+    return false;
+  }
+
+  // nếu dữ liệu chuẩn, ghi ra console log thành công , trả về true
+    console.log("Kết quả : true");
+    return true;
+};
+
+// Xuất ra dữ liệu đơn hàng của khách hàng
+function exportCustomerInfo (paramCustomerInfo) {
+  "use strict";
+  console.log(`%cBước 3 : Xuất dữ liệu`,"color:green");
+
+  // Tạo modal mới (Nếu chưa có)
+  $("#modal-confirm-order").length == "0" ? $("body script").before(modalConfirmOrder ()) : "";
+
+  // Gắn thêm một số dữ liệu của modal
+  let vModalObjectData = JSON.parse(JSON.stringify(paramCustomerInfo));
+  var vDiscount = vModalObjectData.idVourcher == "" ? 0 : callAjaxApiVoucher(vModalObjectData.idVourcher);
+  vModalObjectData.idVourcher = vModalObjectData.idVourcher == "" ? "N/A" : `${vModalObjectData.idVourcher} - ${vDiscount == 0 ? "Không hợp lệ" : "Hợp lệ"}`
+  vModalObjectData.giamGia = `${vDiscount}%`;
+  vModalObjectData.giaCuoiCung = vModalObjectData.thanhTien * (1-(vDiscount/100))
+  
+  // Xuất data ra modal
+  $("#modal-confirm-order .modal-body [title=order-detail] :input").each(function(){
+    $(this).val(vModalObjectData[$(this).data("property")])
+  })
+  
+  //Gán sự kiện onclick nút xác nhận
+  $("button#modal-btn-confirm-order").off().on("click",() => onBtnConfirmData());
+
+  // Hiện modal
+  $("#modal-confirm-order").modal("show");
+  console.log(`Xuất dữ liệu thành công`)
+}
+
+
+function exportOrderId (paramOrder,paramConfirmOrder) {
+
+  // vì đã tạo đơn hàng back-end thành công nên ta xóa đơn hàng trên front-end tránh sự cố
+  for (let bValue in paramConfirmOrder) {
+    delete paramConfirmOrder[bValue]
+  }
+
+  // Đơn hàng tạo thành công, ta xóa luôn Modal Confirm Order ID để tránh lỗi gửi đơn hàng rỗng phát sinh
+  // Xóa luôn màn mờ xám (Lúc hiện modal)
+  $("div.modal-backdrop.fade.show").remove();
+  $("#modal-confirm-order").remove();
+  
+
+  console.log(`%cĐơn hàng đã được gửi đến cửa hàng . Thông tin đơn hàng`,"color:red");
+  
+  // Hiện khung trả Order ID và xuất Order ID
+  $("#order-id-return,#last-order-id-return").val(paramOrder.orderId);
+  $("#modal-return-order-id").modal("show");
+
+  // Gán thông tin đơn hàng vào modal 
+  exportModalOrderId (paramOrder);
+  
+  alert ("Đơn hàng đã được gửi đến cửa hàng thành công");
+
+  // Xóa dữ liệu chỗ input
+  clearAllInput()
+  
+  $("#modal-btn-order-detail-info,#last-order-id-detail").off().on("click",function(){
+    // Fix lỗi modal hiện không scroll được
+    $("#modal-return-order-id").modal("hide");
+    $("#modal-last-order-info").css('overflow-y', 'auto').modal("show");
+  });
+
+
+  function exportModalOrderId (paramData) {
+    "use strict";
+
+    $("#modal-order-detail-info [title=order-detail] :is(input:not([data-property^=ngay]),select)").each(function(){
+      $(this).val(paramData[$(this).data("property")]);
+      $(this).val(!this.value || this.value == 0 ? "N/A" : this.value);
+    });
+
+    $("#modal-order-detail-info [title=order-detail]>input[data-property^=ngay]").each(function(){;
+      $(this).val(new Date(paramData[$(this).data("property")]));
+    })
+  };
+}
+
+function exportSearchByOrderId (paramData) {
+  "use strict"
+  $("#modal-search-order-id [title=order-detail] :is(input:not([data-property^=ngay]),select)").each(function(){
+    $(this).val(paramData[$(this).data("property")]);
+    $(this).val(!this.value || this.value == 0 ? "N/A" : this.value);
+  })
+
+  $("#modal-search-order-id [title=order-detail]>input[data-property^=ngay]").each(function(){;
+    $(this).val(new Date(paramData[$(this).data("property")]));
+  })
+}
+
+</script>
+</html>
