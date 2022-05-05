@@ -11,7 +11,6 @@ function callAjaxApiVoucher (paramID) {
     async: false,
     success : pValue => {
       vDiscountValue = pValue.phanTramGiamGia;
-      alert(vDiscountValue)
     },
     error : () => vDiscountValue = 0
     });
