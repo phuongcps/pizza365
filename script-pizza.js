@@ -9,7 +9,7 @@ function callAjaxApiVoucher (paramID) {
     type : "GET",
     dataType : "json",
     async: false,
-    success : pValue => vDiscountValue = JSON.parse(pValue.contents).phanTramGiamGia,
+    success : pValue => {vDiscountValue = JSON.parse(pValue.contents).phanTramGiamGia;alert(vDiscountValue)},
     error : () => vDiscountValue = 0
     });
 
