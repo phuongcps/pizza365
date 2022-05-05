@@ -693,11 +693,7 @@
 
 <script>
 "use strict";
-  jQuery.ajaxPrefilter(function(options) {
-      if (options.crossDomain && jQuery.support.cors) {
-          options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-      }
-  });
+
 /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
 // Test Code
 // phải trích xuất khi load trang , tránh trường hợp sửa HTML bằng tay (sơ ý hoặc cố tình gây lỗi) để hack gửi dữ liệu

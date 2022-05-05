@@ -23,13 +23,12 @@ function callAjaxApiVoucher (paramID) {
 function loadDataDrink () {
   "use strict";
   $.ajax({
-    url : "http://42.115.221.44:8080/devcamp-pizza365/drinks",
+    url : `https://api.scraperapi.com?api_key=fe20d2631b5f2bd4d6b3557d13c65064&url=http://42.115.221.44:8080/devcamp-pizza365/drinks`,
     type : "GET",
     dataType : "json",
     async : false,
     success : pValue => {
       addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",pValue)
-      console.log(pValue)
     },
     error : pErr => console.log(pErr)
   })
