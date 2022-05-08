@@ -5,9 +5,15 @@ function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
   
   $.ajax({
-    url : `https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
+    url : `https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
     type : "GET",
+    crossDomain: true,
     dataType : "json",
+    headers : {
+      "x-requested-with": "example.com",
+      "X-RapidAPI-Host": "http-cors-proxy.p.rapidapi.com",
+      "X-RapidAPI-Key": "1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e"
+    },
     async: false,
     success : pValue => {
       vDiscountValue = pValue.phanTramGiamGia;
@@ -22,9 +28,15 @@ function callAjaxApiVoucher (paramID) {
 function loadDataDrink () {
   "use strict";
   $.ajax({
-    url : `https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/drinks`,
+    url : `https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/drinks`,
     type : "GET",
+    crossDomain: true,
     dataType : "json",
+    headers : {
+      "x-requested-with": "example.com",
+      "X-RapidAPI-Host": "http-cors-proxy.p.rapidapi.com",
+      "X-RapidAPI-Key": "1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e"
+    },
     async : false,
     success : pValue => {
       addDataToSelectDrink ("#select-drink,#drink-confirm,select[data-property=idLoaiNuocUong]",pValue)
@@ -45,15 +57,34 @@ function loadDataDrink () {
 // Gửi đơn hàng và tạo đơn tại backend khi đã confirm
 function callAjaxGetOrderId (paramOrderObj) {
   $.ajax ({
-    url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/orders",
+    url : "https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders",
     type : "POST",
+    crossDomain : true,
     dataType : "json",
     data : JSON.stringify(paramOrderObj),
     contentType : "application/json;charset=UTF-8",
+    headers: {
+      'x-requested-with': 'example.com',
+      'X-RapidAPI-Host': 'http-cors-proxy.p.rapidapi.com',
+      'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
+    },
     async : false,
     success : pValue => exportOrderId(pValue,paramOrderObj),
     error : () => console.log("failed")
   })
+  // console.log(encodeURIComponent("http://42.115.221.44:8080/devcamp-pizza365/orders"));
+  // fetch ("https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders",{
+  //   method : "POST",
+  //   body: JSON.stringify(paramOrderObj),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'x-requested-with': 'example.com',
+  //     'X-RapidAPI-Host': 'http-cors-proxy.p.rapidapi.com',
+  //     'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
+  //   },  
+  // }).then (respone => respone.json())
+  //   .then (vDate => console.log(vDate))
+  //   .catch (err => console.log("Loi"))
 } 
 
 
@@ -63,6 +94,12 @@ $.ajax({
   type : "GET",
   dataType : "json",
   async : false,
+  headers: {
+    'Content-Type': 'application/json',
+    'x-requested-with': 'example.com',
+    'X-RapidAPI-Host': 'http-cors-proxy.p.rapidapi.com',
+    'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
+  },  
   success : (pValue) => {
     alert(`Lấy đơn hàng by Order Id thành công`);
     exportSearchByOrderId (pValue)
