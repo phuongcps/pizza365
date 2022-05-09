@@ -44,6 +44,30 @@
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
     }
   </style>
+
+  <style>
+      .loading-bar {
+        display: none; /* by default hidden */
+        position: fixed;
+        z-index: 1000000; /* always on top */
+        left: 0;
+        top : 0;
+        width: 100%;
+        height: 100%; /* full screen */
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Loader.gif/640px-Loader.gif");
+        background-position: 50% 50%; /* center */
+        background-color: rgba (255,255,255,0.8) /* transpacy */;
+        background-repeat: no-repeat;
+      }
+
+      body.loading { /* when body loading class */
+        overflow: hidden; /* hide scrolling bar */
+      }
+
+      body.loading .loading-bar { /* body loding class , appear loading bar */
+        display: block;
+      }
+  </style>
 </head>
 <body>
 
@@ -675,6 +699,7 @@
     </div>
   </div>
 </div>
+<div class="loading-bar"></div>
 <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
 
@@ -693,7 +718,15 @@
 
 <script>
 "use strict";
-
+$(document).ready(function()
+    {
+        $(document).ajaxStart(function() {
+                document.body.className = "loading";
+            })
+            .ajaxStop(function() {
+              document.body.className = "";
+            });
+    });
 /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
 // Test Code
 // phải trích xuất khi load trang , tránh trường hợp sửa HTML bằng tay (sơ ý hoặc cố tình gây lỗi) để hack gửi dữ liệu
@@ -776,8 +809,9 @@ gDATA_INPUT_REQUIRED_CLOSURE.getAllElementJquery().each(function(index){
 })
 
 // Check voucher hợp lệ hay không (Ngay cả trước khi ấn gửi đơn)
-$("#input-voucher").on("blur",function(){
-  let vDiscount = this.value.trim() ? callAjaxApiVoucher(this.value.trim()) : "";
+$("#input-voucher").on("blur",async function(){
+  let vDiscount = "";
+  this.value.trim() ? await callAjaxApiVoucher(this.value.trim()).then(pValue => vDiscount = pValue) : "";
   if (vDiscount != 0) {
     $(this).removeClass("is-valid is-invalid")
            .addClass("is-valid")
@@ -1054,7 +1088,7 @@ function checkCustomerInfo (paramCustomerInfo) {
 };
 
 // Xuất ra dữ liệu đơn hàng của khách hàng
-function exportCustomerInfo (paramCustomerInfo) {
+async function exportCustomerInfo (paramCustomerInfo) {
   "use strict";
   console.log(`%cBước 3 : Xuất dữ liệu`,"color:green");
 
@@ -1063,7 +1097,7 @@ function exportCustomerInfo (paramCustomerInfo) {
 
   // Gắn thêm một số dữ liệu của modal
   let vModalObjectData = JSON.parse(JSON.stringify(paramCustomerInfo));
-  var vDiscount = vModalObjectData.idVourcher == "" ? 0 : callAjaxApiVoucher(vModalObjectData.idVourcher);
+  var vDiscount = vModalObjectData.idVourcher == "" ? 0 : await callAjaxApiVoucher(vModalObjectData.idVourcher);
   vModalObjectData.idVourcher = vModalObjectData.idVourcher == "" ? "N/A" : `${vModalObjectData.idVourcher} - ${vDiscount == 0 ? "Không hợp lệ" : "Hợp lệ"}`
   vModalObjectData.giamGia = `${vDiscount}%`;
   vModalObjectData.giaCuoiCung = vModalObjectData.thanhTien * (1-(vDiscount/100))

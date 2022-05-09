@@ -1,10 +1,9 @@
 // 1.Script ajax
 
 // Check Voucher và trả về %giảm giá (Nếu không hợp lệ trả về 0%)
-function callAjaxApiVoucher (paramID) {
+async function callAjaxApiVoucher (paramID) {
   let vDiscountValue = "";
-  
-  $.ajax({
+  await $.ajax({
     url : `https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-voucher-api/voucher_detail/${paramID}`,
     type : "GET",
     crossDomain: true,
@@ -14,11 +13,16 @@ function callAjaxApiVoucher (paramID) {
       "X-RapidAPI-Host": "http-cors-proxy.p.rapidapi.com",
       "X-RapidAPI-Key": "1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e"
     },
-    async: false,
+    async: true,
+    //beforeSend : () => document.body.className = "loading",
     success : pValue => {
       vDiscountValue = pValue.phanTramGiamGia;
     },
-    error : () => vDiscountValue = 0
+    error : () => {
+      vDiscountValue = 0;
+      document.body.className = "";
+    },
+    //complete : () => document.body.className = ""
     });
 
   return vDiscountValue;
@@ -56,6 +60,7 @@ function loadDataDrink () {
 
 // Gửi đơn hàng và tạo đơn tại backend khi đã confirm
 function callAjaxGetOrderId (paramOrderObj) {
+  document.body.className = "loading";
   $.ajax ({
     url : "https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders",
     type : "POST",
@@ -68,9 +73,9 @@ function callAjaxGetOrderId (paramOrderObj) {
       'X-RapidAPI-Host': 'http-cors-proxy.p.rapidapi.com',
       'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
     },
-    async : false,
-    success : pValue => exportOrderId(pValue,paramOrderObj),
-    error : () => console.log("failed")
+    async : true,
+    success : pValue => {document.body.className = "";exportOrderId(pValue,paramOrderObj);},
+    error : () => {document.body.className = "";console.log("failed");}
   })
   // console.log(encodeURIComponent("http://42.115.221.44:8080/devcamp-pizza365/orders"));
   // fetch ("https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders",{
@@ -113,7 +118,7 @@ $.ajax({
 
 function modalConfirmOrder () {
   const g_MODAL_CONFIRM_ORDER = 
-  `<div id="modal-confirm-order" class="modal fade" tabindex="-1">
+  `<div id="modal-confirm-order" class="modal fade" tabindex="-1" style="overflow-y:auto">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
