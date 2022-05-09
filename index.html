@@ -56,7 +56,7 @@
         height: 100%; /* full screen */
         background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Loader.gif/640px-Loader.gif");
         background-position: 50% 50%; /* center */
-        background-color: rgba (255,255,255,0.8) /* transpacy */;
+        background-color: rgba(255,255,255,0.8) /* transpacy */;
         background-repeat: no-repeat;
       }
 
@@ -718,15 +718,19 @@
 
 <script>
 "use strict";
-$(document).ready(function()
-    {
-        $(document).ajaxStart(function() {
-                document.body.className = "loading";
-            })
-            .ajaxStop(function() {
-              document.body.className = "";
-            });
-    });
+// Event show loading Gif when Ajax calling
+$(document).ready(function(){
+  $(document).ajaxStart(function() {
+    document.body.className = "loading";
+  })
+  .ajaxStop(function() {
+    document.body.className = "";
+  });
+});
+
+//Show loading gif khi chưa hoàn thành loading page ban đầu
+document.body.className = "loading";
+
 /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
 // Test Code
 // phải trích xuất khi load trang , tránh trường hợp sửa HTML bằng tay (sơ ý hoặc cố tình gây lỗi) để hack gửi dữ liệu
@@ -879,6 +883,7 @@ function onPageLoading() {
     console.log (`Mã nước uống bạn chọn là : ${this.value}`);
     console.log (`Tên loại nước uống bạn chọn là ${$(this).find("option:selected").text()}`);
   })
+  document.body.className = "";
 }
 
 
