@@ -74,12 +74,13 @@ function callAjaxGetOrderId (paramOrderObj) {
       'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
     },
     async : true,
-    success : pValue => {document.body.className = "";exportOrderId(pValue,paramOrderObj);},
-    error : () => {document.body.className = "";console.log("failed");}
+    success : pValue => exportOrderId(pValue,paramOrderObj),
+    error : () => console.log("failed"),
+    complete : () => document.body.className = ""
   })
   // console.log(encodeURIComponent("http://42.115.221.44:8080/devcamp-pizza365/orders"));
   // fetch ("https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders",{
-  //   method : "POST",
+  //   method : "POST", 
   //   body: JSON.stringify(paramOrderObj),
   //   headers: {
   //     'Content-Type': 'application/json',
@@ -94,11 +95,12 @@ function callAjaxGetOrderId (paramOrderObj) {
 
 
 function callAjaxByOrderId(paramId) {
+  document.body.className = "loading";
 $.ajax({
-  url : "https://cors-anywhere.herokuapp.com/http://42.115.221.44:8080/devcamp-pizza365/orders/"+paramId,
+  url : "https://http-cors-proxy.p.rapidapi.com/http://42.115.221.44:8080/devcamp-pizza365/orders/"+paramId,
   type : "GET",
   dataType : "json",
-  async : false,
+  async : true,
   headers: {
     'Content-Type': 'application/json',
     'x-requested-with': 'example.com',
@@ -110,6 +112,7 @@ $.ajax({
     exportSearchByOrderId (pValue)
   },
   error : () => alert (`Không tồn tại đơn hàng`),
+  complete : () => document.body.className = ""
 })
 }
 // End of Ajax JS
