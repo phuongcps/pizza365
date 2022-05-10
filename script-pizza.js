@@ -108,10 +108,10 @@ $.ajax({
     'X-RapidAPI-Key': '1f5aad35bemsh5342bef6641da76p1de60djsn0b865307f49e'
   },  
   success : (pValue) => {
-    alert(`Lấy đơn hàng by Order Id thành công`);
+    toastr.success(`Lấy đơn hàng by Order Id thành công`);
     exportSearchByOrderId (pValue)
   },
-  error : () => alert (`Không tồn tại đơn hàng`),
+  error : () => toastr.error (`Không tồn tại đơn hàng`),
   complete : () => document.body.className = ""
 })
 }

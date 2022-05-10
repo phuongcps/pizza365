@@ -29,6 +29,10 @@
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="icon" type="image/x-icon" href="images/pizza-icon-26.jpg">
 
+  <!-- Toasts Plugin-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
   <style>
     .select2-selection {
       padding-right: calc(1.6em + 0.75rem);
@@ -714,6 +718,20 @@
 
       })
   })
+
+  toastr.options = {
+    "closeButton": true,
+    "progressBar": true,
+    "newestOnTop": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "showDuration": "5000",
+    "hideDuration": "5000",
+    "timeOut": "8000",
+    "extendedTimeOut": "5000",
+    "showMethod": "slideDown",
+    "hideMethod": "hide"
+  }
 </script>
 </body>
 
@@ -839,7 +857,7 @@ $("#input-voucher").on("blur",async function(){
   } 
 })
 
-$("#last-order-id-detail").on("click",() => alert("Bạn chưa đặt đơn hàng nào"))
+$("#last-order-id-detail").on("click",() => toastr.info("Bạn chưa đặt đơn hàng nào"))
 
 /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
 //hàm thực hiện khi load trang
@@ -864,7 +882,7 @@ function onPageLoading() {
   // Gán sự kiến nút tìm đơn hàng by Order ID (Modal)
   $("#modal-btn-search-order-id").on("click",() => {
     var vOrderId = $("#modal-input-search-order-id").val().trim();
-    vOrderId ? callAjaxByOrderId (vOrderId) : alert (`Bạn chưa nhập order Id`)
+    vOrderId ? callAjaxByOrderId (vOrderId) : toastr.error (`Bạn chưa nhập order Id`)
   })
 
   // Gán sự kiện nút mở modal tìm kiếm đơn hàng by Order Id
@@ -883,6 +901,7 @@ function onPageLoading() {
 
     console.log (`Mã nước uống bạn chọn là : ${this.value}`);
     console.log (`Tên loại nước uống bạn chọn là ${$(this).find("option:selected").text()}`);
+    toastr.info (`Loại nước uống bạn chọn là ${this.value} - ${$(this).find("option:selected").text()}`);
   })
   document.body.className = "";
 }
@@ -915,6 +934,7 @@ function onBtnChoosePizzaSize (paramPizzaSize) {
 
   // B3 : Xuất dữ liệu ra console để biết đã chọn loại Pizza nào 
   console.log(`Thông tin Pizza bạn chọn : ${JSON.stringify(vSelectedMenuStructure)}`);
+  toastr.info (`Size Pizza bạn chọn ${paramPizzaSize} - ${vPizzaSelectDetail.menuName}`);
   
   // gắn giá trị ở input dưới để khách check thông tin
   $("#select-pizza-size").val(paramPizzaSize)
@@ -936,6 +956,7 @@ function onBtnChoosePizzaType (paramPizzaType) {
   //load ra console cho biết đã chọn loại pizza nào
   console.log (`Loại Pizza bạn chọn : ${paramPizzaType}`);
   console.log (`Tên loại Pizza bạn chọn : ${vPizzaTypeSelectDetail.typeName}`);
+  toastr.info (`Loại pizza bạn chọn ${paramPizzaType} - ${vPizzaTypeSelectDetail.typeName}`);
   // lấy giá trị hương vị pizza vào ô input (Đã disabled nhập) để khách biết hương vị đã được chọn trước khi gửi đơn
   $("#select-pizza-type").val(paramPizzaType);
   $("#select-pizza-type")[0].dispatchEvent(new Event ("blur"))
@@ -1000,11 +1021,11 @@ function onBtnConfirmData () {
   console.log(`%cBước 4:Xác nhận và xuất đơn hàng`,"color:pink")
   
   if (confirm(vOrderConfirm) === true) {
-    alert ("Đơn hàng đã được xác nhận và đang được gửi đến cửa hàng");
+    toastr.success ("Đơn hàng đã được xác nhận và đang được gửi đến cửa hàng");
     console.log("Đơn hàng đã được xác nhận và đang được gửi đến cửa hàng");
     callAjaxGetOrderId (gCustomerOrderDetail);
   } else {
-      alert (`Bạn chỉnh sửa lại thông tin rồi ấn gửi đơn lại nhé`);
+      toastr.info (`Bạn chỉnh sửa lại thông tin rồi ấn gửi đơn lại nhé`);
       $("#modal-confirm-order").modal("hide");
       console.log("Đơn hàng chưa được xác nhận");
     }
@@ -1083,7 +1104,7 @@ function checkCustomerInfo (paramCustomerInfo) {
   
   // Nếu có lỗi thì báo ra lỗi và trả về giá trị false
   catch (err) {
-    alert ("Dữ liệu nhập chưa hợp lệ. Kiểm tra và nhập lại nhé")
+    toastr.error ("Dữ liệu nhập chưa hợp lệ. Kiểm tra và nhập lại nhé")
     console.log("Kết quả : false");
     return false;
   }
@@ -1144,7 +1165,7 @@ function exportOrderId (paramOrder,paramConfirmOrder) {
   // Gán thông tin đơn hàng vào modal 
   exportModalOrderId (paramOrder);
   
-  alert ("Đơn hàng đã được gửi đến cửa hàng thành công");
+  toastr.success ("Đơn hàng đã được gửi đến cửa hàng thành công");
 
   // Xóa dữ liệu chỗ input
   clearAllInput()
